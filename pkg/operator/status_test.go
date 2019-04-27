@@ -12,6 +12,8 @@ import (
 func TestPrintOperandVersions(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	optr := Operator{operandVersions: []osconfigv1.OperandVersion{{Name: "operator", Version: "1.0"}, {Name: "controller-manager", Version: "2.0"}}}
 	expectedOutput := "operator: 1.0, controller-manager: 2.0"
 	got := optr.printOperandVersions()
@@ -20,6 +22,8 @@ func TestPrintOperandVersions(t *testing.T) {
 	}
 }
 func TestOperatorStatusProgressing(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	type tCase struct {

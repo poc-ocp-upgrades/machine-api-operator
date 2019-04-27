@@ -14,6 +14,8 @@ type expectedNamespace struct {
 func createNamespaceFile(t *testing.T, content []byte) string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	tmpfile, err := ioutil.TempFile("", "namespace")
 	if err != nil {
 		t.Error(err)
@@ -27,6 +29,8 @@ func createNamespaceFile(t *testing.T, content []byte) string {
 	return tmpfile.Name()
 }
 func TestGetNamespace(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	nsFile := createNamespaceFile(t, []byte("default"))

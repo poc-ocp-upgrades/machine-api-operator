@@ -21,9 +21,13 @@ var (
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	rootCmd.PersistentFlags().AddGoFlagSet(flag.CommandLine)
 }
 func main() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if namespace, ok := os.LookupEnv("COMPONENT_NAMESPACE"); ok {

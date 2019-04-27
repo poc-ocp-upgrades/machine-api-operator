@@ -25,6 +25,8 @@ import (
 func TestOperatorSync_NoOp(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	cases := []struct {
 		platform	configv1.PlatformType
 		expectedNoop	bool
@@ -86,6 +88,8 @@ const (
 func initOperator(featureGate *v1.FeatureGate, kubeclientSet *fakekube.Clientset) (*Operator, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	configClient := fakeos.NewSimpleClientset(featureGate)
 	kubeNamespacedSharedInformer := informers.NewSharedInformerFactoryWithOptions(kubeclientSet, 2*time.Minute, informers.WithNamespace(targetNamespace))
 	configSharedInformer := configinformersv1.NewSharedInformerFactoryWithOptions(configClient, 2*time.Minute)
@@ -103,6 +107,8 @@ func initOperator(featureGate *v1.FeatureGate, kubeclientSet *fakekube.Clientset
 func deploymentHasContainer(d *appsv1.Deployment, containerName string) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	for _, container := range d.Spec.Template.Spec.Containers {
 		if container.Name == containerName {
 			return true
@@ -111,6 +117,8 @@ func deploymentHasContainer(d *appsv1.Deployment, containerName string) bool {
 	return false
 }
 func TestOperatorSyncClusterAPIControllerHealthCheckController(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	tests := []struct {

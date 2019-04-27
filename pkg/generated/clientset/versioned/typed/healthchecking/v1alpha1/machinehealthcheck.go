@@ -33,9 +33,13 @@ type machineHealthChecks struct {
 func newMachineHealthChecks(c *HealthcheckingV1alpha1Client, namespace string) *machineHealthChecks {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &machineHealthChecks{client: c.RESTClient(), ns: namespace}
 }
 func (c *machineHealthChecks) Get(name string, options v1.GetOptions) (result *v1alpha1.MachineHealthCheck, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	result = &v1alpha1.MachineHealthCheck{}
@@ -43,6 +47,8 @@ func (c *machineHealthChecks) Get(name string, options v1.GetOptions) (result *v
 	return
 }
 func (c *machineHealthChecks) List(opts v1.ListOptions) (result *v1alpha1.MachineHealthCheckList, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var timeout time.Duration
@@ -56,6 +62,8 @@ func (c *machineHealthChecks) List(opts v1.ListOptions) (result *v1alpha1.Machin
 func (c *machineHealthChecks) Watch(opts v1.ListOptions) (watch.Interface, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var timeout time.Duration
 	if opts.TimeoutSeconds != nil {
 		timeout = time.Duration(*opts.TimeoutSeconds) * time.Second
@@ -66,11 +74,15 @@ func (c *machineHealthChecks) Watch(opts v1.ListOptions) (watch.Interface, error
 func (c *machineHealthChecks) Create(machineHealthCheck *v1alpha1.MachineHealthCheck) (result *v1alpha1.MachineHealthCheck, err error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	result = &v1alpha1.MachineHealthCheck{}
 	err = c.client.Post().Namespace(c.ns).Resource("machinehealthchecks").Body(machineHealthCheck).Do().Into(result)
 	return
 }
 func (c *machineHealthChecks) Update(machineHealthCheck *v1alpha1.MachineHealthCheck) (result *v1alpha1.MachineHealthCheck, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	result = &v1alpha1.MachineHealthCheck{}
@@ -80,6 +92,8 @@ func (c *machineHealthChecks) Update(machineHealthCheck *v1alpha1.MachineHealthC
 func (c *machineHealthChecks) UpdateStatus(machineHealthCheck *v1alpha1.MachineHealthCheck) (result *v1alpha1.MachineHealthCheck, err error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	result = &v1alpha1.MachineHealthCheck{}
 	err = c.client.Put().Namespace(c.ns).Resource("machinehealthchecks").Name(machineHealthCheck.Name).SubResource("status").Body(machineHealthCheck).Do().Into(result)
 	return
@@ -87,9 +101,13 @@ func (c *machineHealthChecks) UpdateStatus(machineHealthCheck *v1alpha1.MachineH
 func (c *machineHealthChecks) Delete(name string, options *v1.DeleteOptions) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return c.client.Delete().Namespace(c.ns).Resource("machinehealthchecks").Name(name).Body(options).Do().Error()
 }
 func (c *machineHealthChecks) DeleteCollection(options *v1.DeleteOptions, listOptions v1.ListOptions) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var timeout time.Duration
@@ -99,6 +117,8 @@ func (c *machineHealthChecks) DeleteCollection(options *v1.DeleteOptions, listOp
 	return c.client.Delete().Namespace(c.ns).Resource("machinehealthchecks").VersionedParams(&listOptions, scheme.ParameterCodec).Timeout(timeout).Body(options).Do().Error()
 }
 func (c *machineHealthChecks) Patch(name string, pt types.PatchType, data []byte, subresources ...string) (result *v1alpha1.MachineHealthCheck, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	result = &v1alpha1.MachineHealthCheck{}

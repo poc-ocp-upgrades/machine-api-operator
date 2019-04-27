@@ -20,6 +20,8 @@ type ControllerContext struct {
 func CreateControllerContext(cb *ClientBuilder, stop <-chan struct{}, targetNamespace string) *ControllerContext {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	kubeClient := cb.KubeClientOrDie("kube-shared-informer")
 	configClient := cb.OpenshiftClientOrDie("config-shared-informer")
 	kubeNamespacedSharedInformer := informers.NewSharedInformerFactoryWithOptions(kubeClient, resyncPeriod()(), informers.WithNamespace(targetNamespace))

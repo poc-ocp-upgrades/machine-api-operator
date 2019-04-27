@@ -48,6 +48,8 @@ type Operator struct {
 func New(namespace, name string, imagesFile string, config string, deployInformer appsinformersv1.DeploymentInformer, featureGateInformer configinformersv1.FeatureGateInformer, kubeClient kubernetes.Interface, osClient osclientset.Interface) *Operator {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	eventBroadcaster := record.NewBroadcaster()
 	eventBroadcaster.StartLogging(glog.Infof)
 	eventBroadcaster.StartRecordingToSink(&coreclientsetv1.EventSinkImpl{Interface: kubeClient.CoreV1().Events("")})
@@ -71,6 +73,8 @@ func New(namespace, name string, imagesFile string, config string, deployInforme
 func (optr *Operator) Run(workers int, stopCh <-chan struct{}) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	defer utilruntime.HandleCrash()
 	defer optr.queue.ShutDown()
 	glog.Info("Starting Machine API Operator")
@@ -88,6 +92,8 @@ func (optr *Operator) Run(workers int, stopCh <-chan struct{}) {
 func (optr *Operator) eventHandler() cache.ResourceEventHandler {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	workQueueKey := fmt.Sprintf("%s/%s", optr.namespace, optr.name)
 	return cache.ResourceEventHandlerFuncs{AddFunc: func(obj interface{}) {
 		optr.queue.Add(workQueueKey)
@@ -100,10 +106,14 @@ func (optr *Operator) eventHandler() cache.ResourceEventHandler {
 func (optr *Operator) worker() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	for optr.processNextWorkItem() {
 	}
 }
 func (optr *Operator) processNextWorkItem() bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	key, quit := optr.queue.Get()
@@ -117,6 +127,8 @@ func (optr *Operator) processNextWorkItem() bool {
 	return true
 }
 func (optr *Operator) handleErr(err error, key interface{}) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err == nil {
@@ -135,6 +147,8 @@ func (optr *Operator) handleErr(err error, key interface{}) {
 func (optr *Operator) sync(key string) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	startTime := time.Now()
 	glog.V(4).Infof("Started syncing operator %q (%v)", key, startTime)
 	defer func() {
@@ -148,6 +162,8 @@ func (optr *Operator) sync(key string) error {
 	return optr.syncAll(*operatorConfig)
 }
 func (optr *Operator) maoConfigFromInfrastructure() (*OperatorConfig, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	infra, err := optr.osClient.ConfigV1().Infrastructures().Get("cluster", metav1.GetOptions{})

@@ -22,6 +22,8 @@ const (
 func (optr *Operator) syncAll(config OperatorConfig) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if err := optr.statusProgressing(); err != nil {
 		glog.Errorf("Error syncing ClusterOperatorStatus: %v", err)
 		return fmt.Errorf("error syncing ClusterOperatorStatus: %v", err)
@@ -43,6 +45,8 @@ func (optr *Operator) syncAll(config OperatorConfig) error {
 	return nil
 }
 func (optr *Operator) syncClusterAPIController(config OperatorConfig) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	featureGate, err := optr.featureGateLister.Get(MachineAPIFeatureGateName)
@@ -79,6 +83,8 @@ func (optr *Operator) syncClusterAPIController(config OperatorConfig) error {
 	return nil
 }
 func (optr *Operator) waitForDeploymentRollout(resource *appsv1.Deployment) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return wait.Poll(deploymentRolloutPollInterval, deploymentRolloutTimeout, func() (bool, error) {

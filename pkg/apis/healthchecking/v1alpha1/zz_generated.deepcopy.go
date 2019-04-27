@@ -7,6 +7,8 @@ import (
 func (in *MachineHealthCheck) DeepCopyInto(out *MachineHealthCheck) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	*out = *in
 	out.TypeMeta = in.TypeMeta
 	in.ObjectMeta.DeepCopyInto(&out.ObjectMeta)
@@ -15,6 +17,8 @@ func (in *MachineHealthCheck) DeepCopyInto(out *MachineHealthCheck) {
 	return
 }
 func (in *MachineHealthCheck) DeepCopy() *MachineHealthCheck {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if in == nil {
@@ -27,12 +31,16 @@ func (in *MachineHealthCheck) DeepCopy() *MachineHealthCheck {
 func (in *MachineHealthCheck) DeepCopyObject() runtime.Object {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if c := in.DeepCopy(); c != nil {
 		return c
 	}
 	return nil
 }
 func (in *MachineHealthCheckList) DeepCopyInto(out *MachineHealthCheckList) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	*out = *in
@@ -50,6 +58,8 @@ func (in *MachineHealthCheckList) DeepCopyInto(out *MachineHealthCheckList) {
 func (in *MachineHealthCheckList) DeepCopy() *MachineHealthCheckList {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if in == nil {
 		return nil
 	}
@@ -60,6 +70,8 @@ func (in *MachineHealthCheckList) DeepCopy() *MachineHealthCheckList {
 func (in *MachineHealthCheckList) DeepCopyObject() runtime.Object {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if c := in.DeepCopy(); c != nil {
 		return c
 	}
@@ -68,11 +80,15 @@ func (in *MachineHealthCheckList) DeepCopyObject() runtime.Object {
 func (in *MachineHealthCheckSpec) DeepCopyInto(out *MachineHealthCheckSpec) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	*out = *in
 	in.Selector.DeepCopyInto(&out.Selector)
 	return
 }
 func (in *MachineHealthCheckSpec) DeepCopy() *MachineHealthCheckSpec {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if in == nil {
@@ -85,10 +101,14 @@ func (in *MachineHealthCheckSpec) DeepCopy() *MachineHealthCheckSpec {
 func (in *MachineHealthCheckStatus) DeepCopyInto(out *MachineHealthCheckStatus) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	*out = *in
 	return
 }
 func (in *MachineHealthCheckStatus) DeepCopy() *MachineHealthCheckStatus {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if in == nil {

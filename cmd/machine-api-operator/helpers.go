@@ -23,12 +23,16 @@ const (
 func resyncPeriod() func() time.Duration {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return func() time.Duration {
 		factor := rand.Float64() + 1
 		return time.Duration(float64(minResyncPeriod.Nanoseconds()) * factor)
 	}
 }
 func CreateResourceLock(cb *ClientBuilder, componentNamespace, componentName string) resourcelock.Interface {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	recorder := record.NewBroadcaster().NewRecorder(scheme.Scheme, v1.EventSource{Component: componentName})

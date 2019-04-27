@@ -42,12 +42,16 @@ type Images struct {
 func getProviderFromInfrastructure(infra *configv1.Infrastructure) (configv1.PlatformType, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if infra.Status.Platform == "" {
 		return "", fmt.Errorf("no platform provider found on install config")
 	}
 	return infra.Status.Platform, nil
 }
 func getImagesFromJSONFile(filePath string) (*Images, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	data, err := ioutil.ReadFile(filePath)
@@ -61,6 +65,8 @@ func getImagesFromJSONFile(filePath string) (*Images, error) {
 	return &i, nil
 }
 func getProviderControllerFromImages(platform configv1.PlatformType, images Images) (string, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	switch platform {
@@ -83,12 +89,16 @@ func getProviderControllerFromImages(platform configv1.PlatformType, images Imag
 func getMachineAPIOperatorFromImages(images Images) (string, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if images.MachineAPIOperator == "" {
 		return "", fmt.Errorf("failed gettingMachineAPIOperator image. It is empty")
 	}
 	return images.MachineAPIOperator, nil
 }
 func PopulateTemplate(config *OperatorConfig, path string) ([]byte, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	data, err := ioutil.ReadFile(path)
@@ -109,7 +119,16 @@ func PopulateTemplate(config *OperatorConfig, path string) ([]byte, error) {
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

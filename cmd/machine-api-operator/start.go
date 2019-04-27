@@ -21,11 +21,15 @@ var (
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	rootCmd.AddCommand(startCmd)
 	startCmd.PersistentFlags().StringVar(&startOpts.kubeconfig, "kubeconfig", "", "Kubeconfig file to access a remote cluster (testing only)")
 	startCmd.PersistentFlags().StringVar(&startOpts.imagesFile, "images-json", "", "images.json file for MAO.")
 }
 func runStartCmd(cmd *cobra.Command, args []string) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	flag.Set("logtostderr", "true")
@@ -54,6 +58,8 @@ func runStartCmd(cmd *cobra.Command, args []string) {
 	panic("unreachable")
 }
 func startControllers(ctx *ControllerContext) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	go operator.New(componentNamespace, componentName, startOpts.imagesFile, config, ctx.KubeNamespacedInformerFactory.Apps().V1().Deployments(), ctx.ConfigInformerFactory.Config().V1().FeatureGates(), ctx.ClientBuilder.KubeClientOrDie(componentName), ctx.ClientBuilder.OpenshiftClientOrDie(componentName)).Run(2, ctx.Stop)

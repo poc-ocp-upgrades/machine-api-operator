@@ -16,9 +16,13 @@ type HealthcheckingV1alpha1Client struct{ restClient rest.Interface }
 func (c *HealthcheckingV1alpha1Client) MachineHealthChecks(namespace string) MachineHealthCheckInterface {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return newMachineHealthChecks(c, namespace)
 }
 func NewForConfig(c *rest.Config) (*HealthcheckingV1alpha1Client, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	config := *c
@@ -34,6 +38,8 @@ func NewForConfig(c *rest.Config) (*HealthcheckingV1alpha1Client, error) {
 func NewForConfigOrDie(c *rest.Config) *HealthcheckingV1alpha1Client {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	client, err := NewForConfig(c)
 	if err != nil {
 		panic(err)
@@ -43,9 +49,13 @@ func NewForConfigOrDie(c *rest.Config) *HealthcheckingV1alpha1Client {
 func New(c rest.Interface) *HealthcheckingV1alpha1Client {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &HealthcheckingV1alpha1Client{c}
 }
 func setConfigDefaults(config *rest.Config) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	gv := v1alpha1.SchemeGroupVersion
@@ -58,6 +68,8 @@ func setConfigDefaults(config *rest.Config) error {
 	return nil
 }
 func (c *HealthcheckingV1alpha1Client) RESTClient() rest.Interface {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if c == nil {

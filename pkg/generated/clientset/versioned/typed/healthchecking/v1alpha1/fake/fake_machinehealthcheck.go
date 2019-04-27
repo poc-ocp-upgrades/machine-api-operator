@@ -21,6 +21,8 @@ var machinehealthchecksKind = schema.GroupVersionKind{Group: "healthchecking.ope
 func (c *FakeMachineHealthChecks) Get(name string, options v1.GetOptions) (result *v1alpha1.MachineHealthCheck, err error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	obj, err := c.Fake.Invokes(testing.NewGetAction(machinehealthchecksResource, c.ns, name), &v1alpha1.MachineHealthCheck{})
 	if obj == nil {
 		return nil, err
@@ -28,6 +30,8 @@ func (c *FakeMachineHealthChecks) Get(name string, options v1.GetOptions) (resul
 	return obj.(*v1alpha1.MachineHealthCheck), err
 }
 func (c *FakeMachineHealthChecks) List(opts v1.ListOptions) (result *v1alpha1.MachineHealthCheckList, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	obj, err := c.Fake.Invokes(testing.NewListAction(machinehealthchecksResource, machinehealthchecksKind, c.ns, opts), &v1alpha1.MachineHealthCheckList{})
@@ -49,9 +53,13 @@ func (c *FakeMachineHealthChecks) List(opts v1.ListOptions) (result *v1alpha1.Ma
 func (c *FakeMachineHealthChecks) Watch(opts v1.ListOptions) (watch.Interface, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return c.Fake.InvokesWatch(testing.NewWatchAction(machinehealthchecksResource, c.ns, opts))
 }
 func (c *FakeMachineHealthChecks) Create(machineHealthCheck *v1alpha1.MachineHealthCheck) (result *v1alpha1.MachineHealthCheck, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	obj, err := c.Fake.Invokes(testing.NewCreateAction(machinehealthchecksResource, c.ns, machineHealthCheck), &v1alpha1.MachineHealthCheck{})
@@ -63,6 +71,8 @@ func (c *FakeMachineHealthChecks) Create(machineHealthCheck *v1alpha1.MachineHea
 func (c *FakeMachineHealthChecks) Update(machineHealthCheck *v1alpha1.MachineHealthCheck) (result *v1alpha1.MachineHealthCheck, err error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	obj, err := c.Fake.Invokes(testing.NewUpdateAction(machinehealthchecksResource, c.ns, machineHealthCheck), &v1alpha1.MachineHealthCheck{})
 	if obj == nil {
 		return nil, err
@@ -70,6 +80,8 @@ func (c *FakeMachineHealthChecks) Update(machineHealthCheck *v1alpha1.MachineHea
 	return obj.(*v1alpha1.MachineHealthCheck), err
 }
 func (c *FakeMachineHealthChecks) UpdateStatus(machineHealthCheck *v1alpha1.MachineHealthCheck) (*v1alpha1.MachineHealthCheck, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	obj, err := c.Fake.Invokes(testing.NewUpdateSubresourceAction(machinehealthchecksResource, "status", c.ns, machineHealthCheck), &v1alpha1.MachineHealthCheck{})
@@ -81,10 +93,14 @@ func (c *FakeMachineHealthChecks) UpdateStatus(machineHealthCheck *v1alpha1.Mach
 func (c *FakeMachineHealthChecks) Delete(name string, options *v1.DeleteOptions) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_, err := c.Fake.Invokes(testing.NewDeleteAction(machinehealthchecksResource, c.ns, name), &v1alpha1.MachineHealthCheck{})
 	return err
 }
 func (c *FakeMachineHealthChecks) DeleteCollection(options *v1.DeleteOptions, listOptions v1.ListOptions) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	action := testing.NewDeleteCollectionAction(machinehealthchecksResource, c.ns, listOptions)
@@ -92,6 +108,8 @@ func (c *FakeMachineHealthChecks) DeleteCollection(options *v1.DeleteOptions, li
 	return err
 }
 func (c *FakeMachineHealthChecks) Patch(name string, pt types.PatchType, data []byte, subresources ...string) (result *v1alpha1.MachineHealthCheck, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	obj, err := c.Fake.Invokes(testing.NewPatchSubresourceAction(machinehealthchecksResource, c.ns, name, pt, data, subresources...), &v1alpha1.MachineHealthCheck{})

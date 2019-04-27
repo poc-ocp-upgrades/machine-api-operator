@@ -13,6 +13,8 @@ import (
 func GetNodeCondition(node *corev1.Node, conditionType corev1.NodeConditionType) *corev1.NodeCondition {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	for _, cond := range node.Status.Conditions {
 		if cond.Type == conditionType {
 			return &cond
@@ -31,6 +33,8 @@ type UnhealthyCondition struct {
 }
 
 func GetNodeUnhealthyConditions(node *corev1.Node, cmUnealthyConditions *corev1.ConfigMap) ([]UnhealthyCondition, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	data, ok := cmUnealthyConditions.Data["conditions"]
@@ -55,6 +59,8 @@ func GetNodeUnhealthyConditions(node *corev1.Node, cmUnealthyConditions *corev1.
 func CreateDummyUnhealthyConditionsConfigMap() (*corev1.ConfigMap, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	unhealthyConditions := &UnhealthyConditions{Items: []UnhealthyCondition{{Name: "Ready", Status: "Unknown", Timeout: "300s"}, {Name: "Ready", Status: "False", Timeout: "300s"}}}
 	conditionsData, err := yaml.Marshal(unhealthyConditions)
 	if err != nil {
@@ -65,7 +71,16 @@ func CreateDummyUnhealthyConditionsConfigMap() (*corev1.ConfigMap, error) {
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

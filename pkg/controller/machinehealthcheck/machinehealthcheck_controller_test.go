@@ -33,10 +33,14 @@ var (
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	mapiv1alpha1.AddToScheme(scheme.Scheme)
 	healthcheckingv1alpha1.AddToScheme(scheme.Scheme)
 }
 func node(name string, ready bool) *v1.Node {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	nodeReadyStatus := corev1.ConditionTrue
@@ -48,9 +52,13 @@ func node(name string, ready bool) *v1.Node {
 func machine(name string) *mapiv1alpha1.Machine {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &mapiv1alpha1.Machine{ObjectMeta: metav1.ObjectMeta{Name: name, Namespace: namespace, Labels: map[string]string{"foo": "a", "bar": "b"}, OwnerReferences: []metav1.OwnerReference{{Kind: ownerControllerKind}}}, TypeMeta: metav1.TypeMeta{Kind: "Machine"}, Spec: mapiv1alpha1.MachineSpec{}}
 }
 func machineHealthCheck(name string) *healthcheckingv1alpha1.MachineHealthCheck {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return &healthcheckingv1alpha1.MachineHealthCheck{ObjectMeta: metav1.ObjectMeta{Name: name, Namespace: namespace}, TypeMeta: metav1.TypeMeta{Kind: "MachineHealthCheck"}, Spec: healthcheckingv1alpha1.MachineHealthCheckSpec{Selector: metav1.LabelSelector{MatchLabels: map[string]string{"foo": "a", "bar": "b"}}}, Status: healthcheckingv1alpha1.MachineHealthCheckStatus{}}
@@ -58,9 +66,13 @@ func machineHealthCheck(name string) *healthcheckingv1alpha1.MachineHealthCheck 
 func configMap(name string, data string) *corev1.ConfigMap {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &corev1.ConfigMap{ObjectMeta: metav1.ObjectMeta{Name: name, Namespace: namespace}, TypeMeta: metav1.TypeMeta{Kind: "ConfigMap"}, Data: map[string]string{"conditions": data}}
 }
 func TestHasMatchingLabels(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	machine := machine("machine")
@@ -76,6 +88,8 @@ func TestHasMatchingLabels(t *testing.T) {
 	}
 }
 func TestGetNodeCondition(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	testsCases := []struct {
@@ -97,6 +111,8 @@ type expectedReconcile struct {
 }
 
 func TestReconcile(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	nodeHealthy := node("healthy", true)
@@ -132,10 +148,14 @@ func TestReconcile(t *testing.T) {
 func newFakeReconciler(initObjects ...runtime.Object) *ReconcileMachineHealthCheck {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fakeClient := fake.NewFakeClient(initObjects...)
 	return &ReconcileMachineHealthCheck{client: fakeClient, scheme: scheme.Scheme, namespace: namespace}
 }
 func TestHasMachineSetOwner(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	machineWithMachineSet := machine("machineWithMachineSet")
@@ -154,6 +174,8 @@ func TestHasMachineSetOwner(t *testing.T) {
 func TestUnhealthyForTooLong(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	nodeUnhealthyForTooLong := node("nodeUnhealthyForTooLong", false)
 	nodeRecentlyUnhealthy := node("nodeRecentlyUnhealthy", false)
 	nodeRecentlyUnhealthy.Status.Conditions[0].LastTransitionTime = metav1.Time{Time: time.Now()}
@@ -168,6 +190,8 @@ func TestUnhealthyForTooLong(t *testing.T) {
 	}
 }
 func testRemediation(t *testing.T, remediationWaitTime time.Duration, initObjects ...runtime.Object) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	nodeHealthy := node("nodeHealthy", true)
@@ -218,15 +242,21 @@ func testRemediation(t *testing.T, remediationWaitTime time.Duration, initObject
 func TestRemediateWithoutUnhealthyConditionsConfigMap(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	testRemediation(t, 5*time.Minute)
 }
 func TestRemediateWithUnhealthyConditionsConfigMap(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	cmBadConditions := configMap(healthcheckingv1alpha1.ConfigMapNodeUnhealthyConditions, badConditionsData)
 	testRemediation(t, 1*time.Minute, cmBadConditions)
 }
 func TestIsMaster(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	masterMachine := machine("master")

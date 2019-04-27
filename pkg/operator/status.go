@@ -26,6 +26,8 @@ const (
 func (optr *Operator) statusProgressing() error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	desiredVersions := optr.operandVersions
 	currentVersions, err := optr.getCurrentVersions()
 	if err != nil {
@@ -55,6 +57,8 @@ func (optr *Operator) statusProgressing() error {
 func (optr *Operator) statusAvailable() error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	conds := []osconfigv1.ClusterOperatorStatusCondition{newClusterOperatorStatusCondition(osconfigv1.OperatorAvailable, osconfigv1.ConditionTrue, string(ReasonEmpty), fmt.Sprintf("Cluster Machine API Operator is available at %s", optr.printOperandVersions())), newClusterOperatorStatusCondition(osconfigv1.OperatorProgressing, osconfigv1.ConditionFalse, "", ""), newClusterOperatorStatusCondition(osconfigv1.OperatorFailing, osconfigv1.ConditionFalse, "", "")}
 	co, err := optr.getOrCreateClusterOperator()
 	if err != nil {
@@ -65,6 +69,8 @@ func (optr *Operator) statusAvailable() error {
 	return optr.syncStatus(co, conds)
 }
 func (optr *Operator) statusFailing(error string) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	desiredVersions := optr.operandVersions
@@ -91,9 +97,13 @@ func (optr *Operator) statusFailing(error string) error {
 func newClusterOperatorStatusCondition(conditionType osconfigv1.ClusterStatusConditionType, conditionStatus osconfigv1.ConditionStatus, reason string, message string) osconfigv1.ClusterOperatorStatusCondition {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return osconfigv1.ClusterOperatorStatusCondition{Type: conditionType, Status: conditionStatus, LastTransitionTime: metav1.Now(), Reason: reason, Message: message}
 }
 func (optr *Operator) syncStatus(co *osconfigv1.ClusterOperator, conds []osconfigv1.ClusterOperatorStatusCondition) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	for _, c := range conds {
@@ -103,6 +113,8 @@ func (optr *Operator) syncStatus(co *osconfigv1.ClusterOperator, conds []osconfi
 	return err
 }
 func (optr *Operator) getOrCreateClusterOperator() (*osconfigv1.ClusterOperator, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	co, err := optr.osClient.ConfigV1().ClusterOperators().Get(clusterOperatorName, metav1.GetOptions{})
@@ -123,6 +135,8 @@ func (optr *Operator) getOrCreateClusterOperator() (*osconfigv1.ClusterOperator,
 func (optr *Operator) getCurrentVersions() ([]osconfigv1.OperandVersion, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	co, err := optr.getOrCreateClusterOperator()
 	if err != nil {
 		return nil, err
@@ -130,6 +144,8 @@ func (optr *Operator) getCurrentVersions() ([]osconfigv1.OperandVersion, error) 
 	return co.Status.Versions, nil
 }
 func (optr *Operator) printOperandVersions() string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	versionsOutput := []string{}

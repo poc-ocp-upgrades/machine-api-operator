@@ -33,6 +33,8 @@ type expectedConditions struct {
 func node(name string, ready bool) *v1.Node {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	nodeReadyStatus := corev1.ConditionTrue
 	if !ready {
 		nodeReadyStatus = corev1.ConditionUnknown
@@ -42,9 +44,13 @@ func node(name string, ready bool) *v1.Node {
 func configMap(name string, data map[string]string) *corev1.ConfigMap {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &corev1.ConfigMap{ObjectMeta: metav1.ObjectMeta{Name: name, Namespace: namespace}, TypeMeta: metav1.TypeMeta{Kind: "ConfigMap"}, Data: data}
 }
 func TestGetNodeUnhealthyConditions(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	nodeHealthy := node("nodeHealthy", true)

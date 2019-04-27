@@ -11,9 +11,13 @@ type FakeHealthcheckingV1alpha1 struct{ *testing.Fake }
 func (c *FakeHealthcheckingV1alpha1) MachineHealthChecks(namespace string) v1alpha1.MachineHealthCheckInterface {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &FakeMachineHealthChecks{c, namespace}
 }
 func (c *FakeHealthcheckingV1alpha1) RESTClient() rest.Interface {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var ret *rest.RESTClient

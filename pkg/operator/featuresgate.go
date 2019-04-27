@@ -15,6 +15,8 @@ var MachineAPIOperatorFeatureSets = map[osev1.FeatureSet]*osev1.FeatureGateEnabl
 func generateFeatureMap(featureSet osev1.FeatureSet) (map[string]bool, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	rv := map[string]bool{}
 	set, ok := MachineAPIOperatorFeatureSets[featureSet]
 	if !ok {

@@ -39,6 +39,8 @@ const (
 func NewController(nodeInformer coreinformers.NodeInformer, machineInformer mapiinformers.MachineInformer, kubeClient kubeclientset.Interface, capiClient mapiclient.Interface) *Controller {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	eventBroadcaster := record.NewBroadcaster()
 	eventBroadcaster.StartLogging(glog.Infof)
 	eventBroadcaster.StartRecordingToSink(&v1core.EventSinkImpl{Interface: v1core.New(kubeClient.CoreV1().RESTClient()).Events("")})
@@ -72,6 +74,8 @@ type Controller struct {
 func (c *Controller) addNode(obj interface{}) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	node := obj.(*corev1.Node)
 	glog.V(3).Infof("Adding node: %q", node.Name)
 	c.enqueueNode(node)
@@ -79,11 +83,15 @@ func (c *Controller) addNode(obj interface{}) {
 func (c *Controller) updateNode(old, cur interface{}) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	curNode := cur.(*corev1.Node)
 	glog.V(3).Infof("Updating node: %q", curNode.Name)
 	c.enqueueNode(curNode)
 }
 func (c *Controller) deleteNode(obj interface{}) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	node, ok := obj.(*corev1.Node)
@@ -105,6 +113,8 @@ func (c *Controller) deleteNode(obj interface{}) {
 func (c *Controller) addMachine(obj interface{}) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	machine := obj.(*mapiv1.Machine)
 	c.machineAddressMux.Lock()
 	defer c.machineAddressMux.Unlock()
@@ -117,6 +127,8 @@ func (c *Controller) addMachine(obj interface{}) {
 	}
 }
 func (c *Controller) updateMachine(old, cur interface{}) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	machine := cur.(*mapiv1.Machine)
@@ -133,6 +145,8 @@ func (c *Controller) updateMachine(old, cur interface{}) {
 func (c *Controller) deleteMachine(obj interface{}) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	machine := obj.(*mapiv1.Machine)
 	c.machineAddressMux.Lock()
 	defer c.machineAddressMux.Unlock()
@@ -147,6 +161,8 @@ func (c *Controller) deleteMachine(obj interface{}) {
 func WaitForCacheSync(controllerName string, stopCh <-chan struct{}, cacheSyncs ...cache.InformerSynced) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	glog.Infof("Waiting for caches to sync for %s controller", controllerName)
 	if !cache.WaitForCacheSync(stopCh, cacheSyncs...) {
 		utilruntime.HandleError(fmt.Errorf("unable to sync caches for %s controller", controllerName))
@@ -156,6 +172,8 @@ func WaitForCacheSync(controllerName string, stopCh <-chan struct{}, cacheSyncs 
 	return true
 }
 func (c *Controller) Run(workers int, stopCh <-chan struct{}) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	defer utilruntime.HandleCrash()
@@ -176,6 +194,8 @@ func (c *Controller) Run(workers int, stopCh <-chan struct{}) {
 func (c *Controller) enqueue(node *corev1.Node) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	key, err := cache.DeletionHandlingMetaNamespaceKeyFunc(node)
 	if err != nil {
 		utilruntime.HandleError(fmt.Errorf("couldn't get key for object %#v: %v", node, err))
@@ -186,10 +206,14 @@ func (c *Controller) enqueue(node *corev1.Node) {
 func (c *Controller) worker() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	for c.processNextWorkItem() {
 	}
 }
 func (c *Controller) processNextWorkItem() bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	key, quit := c.queue.Get()
@@ -202,6 +226,8 @@ func (c *Controller) processNextWorkItem() bool {
 	return true
 }
 func (c *Controller) handleErr(err error, key interface{}) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err == nil {
@@ -218,6 +244,8 @@ func (c *Controller) handleErr(err error, key interface{}) {
 	c.queue.Forget(key)
 }
 func (c *Controller) syncNode(key string) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	startTime := time.Now()
@@ -240,6 +268,8 @@ func (c *Controller) syncNode(key string) error {
 	return c.processNode(node)
 }
 func (c *Controller) processNode(node *corev1.Node) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	machineKey, ok := node.Annotations[machineAnnotationKey]
@@ -310,6 +340,8 @@ func (c *Controller) processNode(node *corev1.Node) error {
 func addTaintsToNode(node *corev1.Node, machine *mapiv1.Machine) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	for _, mTaint := range machine.Spec.Taints {
 		glog.V(3).Infof("Adding taint %v from machine %q to node %q", mTaint, machine.Name, node.Name)
 		alreadyPresent := false
@@ -331,6 +363,8 @@ var (
 )
 
 func main() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	pflag.CommandLine.AddGoFlagSet(flag.CommandLine)

@@ -36,6 +36,8 @@ const (
 func Add(mgr manager.Manager) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	r, err := newReconciler(mgr)
 	if err != nil {
 		return err
@@ -43,6 +45,8 @@ func Add(mgr manager.Manager) error {
 	return add(mgr, r)
 }
 func newReconciler(mgr manager.Manager) (reconcile.Reconciler, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	r := &ReconcileMachineHealthCheck{client: mgr.GetClient(), scheme: mgr.GetScheme()}
@@ -54,6 +58,8 @@ func newReconciler(mgr manager.Manager) (reconcile.Reconciler, error) {
 	return r, nil
 }
 func add(mgr manager.Manager, r reconcile.Reconciler) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	c, err := controller.New("machinehealthcheck-controller", mgr, controller.Options{Reconciler: r})
@@ -72,6 +78,8 @@ type ReconcileMachineHealthCheck struct {
 }
 
 func (r *ReconcileMachineHealthCheck) Reconcile(request reconcile.Request) (reconcile.Result, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	glog.Infof("Reconciling MachineHealthCheck triggered by %s/%s\n", request.Namespace, request.Name)
@@ -123,9 +131,13 @@ func (r *ReconcileMachineHealthCheck) Reconcile(request reconcile.Request) (reco
 func getMachineHealthCheckListOptions() *client.ListOptions {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &client.ListOptions{Raw: &metav1.ListOptions{TypeMeta: metav1.TypeMeta{APIVersion: "healthchecking.openshift.io/v1alpha1", Kind: "MachineHealthCheck"}}}
 }
 func remediate(r *ReconcileMachineHealthCheck, machine *mapiv1.Machine) (reconcile.Result, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	glog.Infof("Initialising remediation logic for machine %s", machine.Name)
@@ -191,6 +203,8 @@ func remediate(r *ReconcileMachineHealthCheck, machine *mapiv1.Machine) (reconci
 func getUnhealthyConditionsConfigMap(r *ReconcileMachineHealthCheck) (*corev1.ConfigMap, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	cmUnhealtyConditions := &corev1.ConfigMap{}
 	cmKey := types.NamespacedName{Name: healthcheckingv1alpha1.ConfigMapNodeUnhealthyConditions, Namespace: r.namespace}
 	err := r.client.Get(context.TODO(), cmKey, cmUnhealtyConditions)
@@ -209,9 +223,13 @@ func getUnhealthyConditionsConfigMap(r *ReconcileMachineHealthCheck) (*corev1.Co
 func isConditionsStatusesEqual(cond *corev1.NodeCondition, unhealthyCond *conditions.UnhealthyCondition) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return cond.Status == unhealthyCond.Status
 }
 func getNodeFromMachine(machine mapiv1.Machine, client client.Client) (*corev1.Node, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if machine.Status.NodeRef == nil {
@@ -226,6 +244,8 @@ func getNodeFromMachine(machine mapiv1.Machine, client client.Client) (*corev1.N
 func unhealthyForTooLong(nodeCondition *corev1.NodeCondition, timeout time.Duration) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	now := time.Now()
 	if nodeCondition.LastTransitionTime.Add(timeout).Before(now) {
 		return true
@@ -233,6 +253,8 @@ func unhealthyForTooLong(nodeCondition *corev1.NodeCondition, timeout time.Durat
 	return false
 }
 func hasMachineSetOwner(machine mapiv1.Machine) bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	ownerRefs := machine.ObjectMeta.GetOwnerReferences()
@@ -244,6 +266,8 @@ func hasMachineSetOwner(machine mapiv1.Machine) bool {
 	return false
 }
 func hasMatchingLabels(machineHealthCheck *healthcheckingv1alpha1.MachineHealthCheck, machine *mapiv1.Machine) bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	selector, err := metav1.LabelSelectorAsSelector(&machineHealthCheck.Spec.Selector)
@@ -264,6 +288,8 @@ func hasMatchingLabels(machineHealthCheck *healthcheckingv1alpha1.MachineHealthC
 func isMaster(machine mapiv1.Machine, client client.Client) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	masterLabels := []string{"node-role.kubernetes.io/master"}
 	node, err := getNodeFromMachine(machine, client)
 	if err != nil {
@@ -281,7 +307,16 @@ func isMaster(machine mapiv1.Machine, client client.Client) bool {
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

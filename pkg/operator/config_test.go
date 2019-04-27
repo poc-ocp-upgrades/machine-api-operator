@@ -19,6 +19,8 @@ var (
 func TestGetProviderFromInfrastructure(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	tests := []struct {
 		infra		*configv1.Infrastructure
 		expected	configv1.PlatformType
@@ -34,6 +36,8 @@ func TestGetProviderFromInfrastructure(t *testing.T) {
 	}
 }
 func TestGetImagesFromJSONFile(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	img, err := getImagesFromJSONFile(imagesJSONFile)
@@ -59,6 +63,8 @@ func TestGetImagesFromJSONFile(t *testing.T) {
 func TestGetProviderControllerFromImages(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	tests := []struct {
 		provider	configv1.PlatformType
 		expectedImage	string
@@ -81,6 +87,8 @@ func TestGetProviderControllerFromImages(t *testing.T) {
 func TestGetMachineAPIOperatorFromImages(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	imagesJSONFile := "fixtures/images.json"
 	img, err := getImagesFromJSONFile(imagesJSONFile)
 	if err != nil {
@@ -95,6 +103,8 @@ func TestGetMachineAPIOperatorFromImages(t *testing.T) {
 	}
 }
 func TestPopulateTemplateMachineHealthCheckControllerEnabled(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	oc := &OperatorConfig{TargetNamespace: "test-namespace", Controllers: Controllers{Provider: "controllers-provider", NodeLink: "controllers-nodelink", MachineHealthCheck: "controllers-machinehealthcheck", MachineHealthCheckEnabled: true}}
@@ -118,6 +128,8 @@ func TestPopulateTemplateMachineHealthCheckControllerEnabled(t *testing.T) {
 	}
 }
 func TestPopulateTemplateMachineHealthCheckControllerDisabled(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	oc := &OperatorConfig{TargetNamespace: "test-namespace", Controllers: Controllers{Provider: "controllers-provider", NodeLink: "controllers-nodelink", MachineHealthCheck: "controllers-machinehealthcheck", MachineHealthCheckEnabled: false}}
