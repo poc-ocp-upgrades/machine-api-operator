@@ -2,7 +2,6 @@ package operator
 
 import (
 	"testing"
-
 	osconfigv1 "github.com/openshift/api/config/v1"
 	fakeconfigclientset "github.com/openshift/client-go/config/clientset/versioned/fake"
 	"github.com/stretchr/testify/assert"
@@ -11,71 +10,30 @@ import (
 )
 
 func TestPrintOperandVersions(t *testing.T) {
-	optr := Operator{
-		operandVersions: []osconfigv1.OperandVersion{
-			{
-				Name:    "operator",
-				Version: "1.0",
-			},
-			{
-				Name:    "controller-manager",
-				Version: "2.0",
-			},
-		},
-	}
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	optr := Operator{operandVersions: []osconfigv1.OperandVersion{{Name: "operator", Version: "1.0"}, {Name: "controller-manager", Version: "2.0"}}}
 	expectedOutput := "operator: 1.0, controller-manager: 2.0"
 	got := optr.printOperandVersions()
 	if got != expectedOutput {
 		t.Errorf("Expected: %s, got: %s", expectedOutput, got)
 	}
 }
-
 func TestOperatorStatusProgressing(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	type tCase struct {
-		currentVersion        []osconfigv1.OperandVersion
-		desiredVersion        []osconfigv1.OperandVersion
-		expectedStatus        osconfigv1.ConditionStatus
-		transitionTimeUpdated bool
+		currentVersion		[]osconfigv1.OperandVersion
+		desiredVersion		[]osconfigv1.OperandVersion
+		expectedStatus		osconfigv1.ConditionStatus
+		transitionTimeUpdated	bool
 	}
-	tCases := []tCase{
-		{
-			currentVersion: []osconfigv1.OperandVersion{
-				{
-					Name:    "operator",
-					Version: "1.0",
-				},
-			},
-			desiredVersion: []osconfigv1.OperandVersion{
-				{
-					Name:    "operator",
-					Version: "1.0",
-				},
-			},
-			expectedStatus: osconfigv1.ConditionFalse,
-		},
-		{
-			currentVersion: []osconfigv1.OperandVersion{
-				{
-					Name:    "operator",
-					Version: "1.0",
-				},
-			},
-			desiredVersion: []osconfigv1.OperandVersion{
-				{
-					Name:    "operator",
-					Version: "2.0",
-				},
-			},
-			expectedStatus: osconfigv1.ConditionTrue,
-		},
-	}
-
+	tCases := []tCase{{currentVersion: []osconfigv1.OperandVersion{{Name: "operator", Version: "1.0"}}, desiredVersion: []osconfigv1.OperandVersion{{Name: "operator", Version: "1.0"}}, expectedStatus: osconfigv1.ConditionFalse}, {currentVersion: []osconfigv1.OperandVersion{{Name: "operator", Version: "1.0"}}, desiredVersion: []osconfigv1.OperandVersion{{Name: "operator", Version: "2.0"}}, expectedStatus: osconfigv1.ConditionTrue}}
 	optr := Operator{eventRecorder: record.NewFakeRecorder(5)}
 	for i, tc := range tCases {
 		optr.operandVersions = tc.currentVersion
 		co := &osconfigv1.ClusterOperator{ObjectMeta: metav1.ObjectMeta{Name: clusterOperatorName}}
 		co.Status.Versions = tc.desiredVersion
-
 		optr.osClient = fakeconfigclientset.NewSimpleClientset(co)
 		startTime := metav1.Now()
 		optr.statusProgressing()
