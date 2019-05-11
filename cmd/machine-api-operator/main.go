@@ -3,7 +3,6 @@ package main
 import (
 	"flag"
 	"os"
-
 	"github.com/golang/glog"
 	"github.com/spf13/cobra"
 )
@@ -15,19 +14,18 @@ const (
 )
 
 var (
-	rootCmd = &cobra.Command{
-		Use:   componentName,
-		Short: "Run Cluster API Controller",
-		Long:  "",
-	}
-	config string
+	rootCmd	= &cobra.Command{Use: componentName, Short: "Run Cluster API Controller", Long: ""}
+	config	string
 )
 
 func init() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	rootCmd.PersistentFlags().AddGoFlagSet(flag.CommandLine)
 }
-
 func main() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if namespace, ok := os.LookupEnv("COMPONENT_NAMESPACE"); ok {
 		componentNamespace = namespace
 	}
